@@ -15,6 +15,14 @@ def get_safe_state(hass: HomeAssistant, entity_id: str):
     return state.state
 
 
+def get_safe_attr(hass: HomeAssistant, entity_id: str, attribute: str):
+    """Get an attribute value, or None if entity is missing."""
+    state = hass.states.get(entity_id)
+    if state is None:
+        return None
+    return state.attributes.get(attribute)
+
+
 def get_domain(entity: str):
     """Get domain of entity."""
     if entity is not None:
